@@ -72,7 +72,7 @@ const CreateNewAccount = ({ companyButton, freelaButton, personButon }) => {
                     </span>
                     <span 
                         onClick={ () => { setAccountData(false); setAboutYou(false); setProfileData(true) } }
-                        style={ profileData ? { backgroundColor: '#2898EE', color: 'white', padding: '1rem 3rem', position: 'relative', left: '1.4rem', borderRadius: '42px' } : {padding: '1rem 3rem', color: '#B3B1B4', cursor: 'pointer', position: 'relative', left: '1.4rem'} }
+                        style={ profileData ? { backgroundColor: '#2898EE', color: 'white', padding: '1rem 3rem', position: 'relative', left: '2.1rem', borderRadius: '42px' } : {padding: '1rem 3rem', color: '#B3B1B4', cursor: 'pointer', position: 'relative', left: '1.4rem'} }
                         className= ''>
                             <span style={ profileData ? { border: 'solid', borderRadius: '50%', padding: '0.1rem 0.4rem', marginRight: '0.5rem' } : { border: 'solid #B3B1B4', borderRadius: '50%', padding: '0.1rem 0.4rem', marginRight: '0.5rem', backgroundColor: '#B3B1B4', color: '#FFFFFF' } }>
                                 3

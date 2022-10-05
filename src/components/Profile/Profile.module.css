@@ -102,8 +102,8 @@
   .contactMainDiv {
     display: flex;
     /* justify-content: space-between;
-    margin-left: 2rem;
     margin-right: 15rem; */
+    margin-left: 2rem;
   }
 
   .contactInfo {
@@ -112,6 +112,7 @@
 
   .contactIcon {
     width: 1rem;
+    margin-left: 2rem;
   }
 
 
@@ -158,6 +159,10 @@
   .inputWork{
       display: flex;
       gap: 1rem;
+  }
+
+  .inputBorder {
+    border: solid var(--blue-color) !important;
   }
 
   .inputJobs{
