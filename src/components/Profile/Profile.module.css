@@ -101,15 +101,9 @@
   
   .contactMainDiv {
     display: flex;
-<<<<<<< HEAD
     justify-content: space-around;
     width: 80%;
     
-=======
-    /* justify-content: space-between;
-    margin-right: 15rem; */
-    margin-left: 2rem;
->>>>>>> refs/remotes/origin/master
   }
 
   .contactInfo {

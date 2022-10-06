@@ -3,20 +3,19 @@ import { Modal, Button, Form } from 'react-bootstrap'
 // import { dataUser } from '../../helpers/dataUser'
 import Edit from '../../assets/Profile/Edit.svg'
 import styles from './Profile.module.css'
-<<<<<<< HEAD
 import PersonalDataModal from './PersonalDataModal'
 import axios from 'axios'
 import phone from '../../assets/Profile/phone.svg'
 import mail from '../../assets/Profile/mail.svg'
 import website from '../../assets/Profile/website.svg'
 import linkedln from '../../assets/Profile/linkedin.svg'
-=======
-import PersonalDataModal, { objetoUser } from './PersonalDataModal'
-import phone from '../../assets/Profile/phone.svg'
-import mail from '../../assets/Profile/mail.svg'
-import website from '../../assets/Profile/website.svg'
-import linkedin from '../../assets/Profile/Linkedin.svg'
->>>>>>> refs/remotes/origin/master
+// =======
+// import PersonalDataModal, { objetoUser } from './PersonalDataModal'
+// import phone from '../../assets/Profile/phone.svg'
+// import mail from '../../assets/Profile/mail.svg'
+// import website from '../../assets/Profile/website.svg'
+// import linkedin from '../../assets/Profile/Linkedin.svg'
+// >>>>>>> refs/remotes/origin/master
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -67,11 +66,7 @@ const Profile = () => {
       <div className={ `${ styles.userCard }` } style={ { backgroundColor: '#FFFF' } } >
           <div className={ `text-start card-header ${ styles.userCardHeader_modifier }` }>
               <p className={`${ styles.userName }`}>
-<<<<<<< HEAD
                   { user.username} {user.last_name }
-=======
-                  { `${ objetoUser.name } ${ objetoUser.lastName} | Profile View `} 
->>>>>>> refs/remotes/origin/master
               </p>
 
                 <div className={`${styles.buttonSet}`}>
@@ -94,27 +89,18 @@ const Profile = () => {
                 </div>
 
           </div>
-<<<<<<< HEAD
           {/* <div className='text-start ms-3 mt-0'>
               <img className={ styles.userCardImage } src={ dataUser[0].user.img } alt="User Image" />
           </div> */}
 
             <div className={ `${ styles.professionText }` }>
                 <p>{user.type}</p>
-=======
-          <div className='text-start ms-3 mt-0'>
-              <img className={ styles.userCardImage } src={ dataUser[0].img } alt="User Image" />
-          </div>
 
-            <div className={ `${ styles.professionText }` }>
-              <p>{`${ objetoUser.profession } | ${ objetoUser.profession2 } | ${ objetoUser.profession3 }`}</p>
->>>>>>> refs/remotes/origin/master
             </div>
 
             <div className={`${ styles.divPersonalData }`} >
                 <p className={ `${ styles.paragraphPersonalData }` }>
                   Name: 
-<<<<<<< HEAD
                   <span className={ `${ styles.spanPersonalData }` }> { user.username}</span>
                 </p>
                 <p className={ `${ styles.paragraphPersonalData }` }>
@@ -124,24 +110,12 @@ const Profile = () => {
                 <p className={ `${ styles.paragraphPersonalData }` }>
                   Company: 
                   <span className={ `${ styles.spanPersonalData }` }> { user.company_name }</span>
-=======
-                  <span className={ `${ styles.spanPersonalData }` }> { `${ objetoUser.name }` }</span>
-                </p>
-                <p className={ `${ styles.paragraphPersonalData }` }>
-                  Last Name: 
-                  <span className={ `${ styles.spanPersonalData }` }> { `${ objetoUser.lastName }` }</span>
-                </p>
-                <p className={ `${ styles.paragraphPersonalData }` }>
-                  Company: 
-                  <span className={ `${ styles.spanPersonalData }` }> { `${ objetoUser.company }` }</span>
->>>>>>> refs/remotes/origin/master
                 </p>
             </div>
             <hr className={`${ styles.divLine }`}></hr>
 
           <div className={ `${ styles.contactMainDiv }` }>
             <div className={ `d-flex { styles.contactDiv }` }>
-<<<<<<< HEAD
               <img className= { `${ styles.contactIcon }` } src={phone} alt="phone" />
               <p className={`mt-3 ms-4 ${ styles.contactInfo }`}>{ user.phone_number }</p>
             </div>
@@ -156,33 +130,14 @@ const Profile = () => {
             <div className={ `d-flex { styles.contactDiv }` }>
               <img className= { `${ styles.contactIcon }` } src={linkedln} alt="linkedln" />
               <p className={`mt-3 ms-4 ${ styles.contactInfo }`}>{ profile.social_link }</p>
-=======
-              <img className= { `${ styles.contactIcon }` } src={ phone } alt="" />
-              <p className={`mt-3 ms-4 ${ styles.contactInfo }`}>{ `${ objetoUser.phone }` }</p>
-            </div>
-            <div className={ `d-flex { styles.contactDiv }` }>
-              <img className= { `${ styles.contactIcon }` } src={ mail } alt="" />
-              <p className={`mt-3 ms-4 ${ styles.contactInfo }`}>{ `${ objetoUser.mail }` }</p>
-            </div>
-            <div className={ `d-flex { styles.contactDiv }` }>
-              <img className= { `${ styles.contactIcon }` } src={ website } alt="" />
-              <p className={`mt-3 ms-4 ${ styles.contactInfo }`}>{ `${ objetoUser.website }` }</p>
-            </div>
-            <div className={ `d-flex { styles.contactDiv }` }>
-              <img className= { `${ styles.contactIcon }` } src={ linkedin } alt="" />
-              <p className={`mt-3 ms-4 ${ styles.contactInfo }`}>{ `${ objetoUser.linkedin }` }</p>
->>>>>>> refs/remotes/origin/master
+
             </div>
           </div>
           <hr className={`${ styles.divLine }`}></hr>
 
           <div style={{padding:'1rem 2rem'}}>
             <p className={ `${styles.paragraphIntroduction}` }>
-<<<<<<< HEAD
             Introduction: <span className={ `${ styles.spanIntroduction }` }>{profile.introduction}</span>
-=======
-              Introduction: <span className={ `${ styles.spanIntroduction }` }>{ objetoUser.introduction }</span>
->>>>>>> refs/remotes/origin/master
             </p>
           </div>
       </div>
