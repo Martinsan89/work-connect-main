@@ -12,12 +12,12 @@ export default function Work() {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const [deleteId, setDeleteId] = useState(0)
-   console.log(data)
+  //  console.log(data)
 
   const listExperience = async() => {
     try {
       await axios.get("http://127.0.0.1:8000/accounts/api/experience/")
-                .then((resp) => {setData(resp.data.Experience.reverse())})
+                .then((resp) => {setData(resp.data.Experience.find((i)=> i.user_id == 3))})
       setLoading(true)
     }
     catch(error) {
@@ -31,12 +31,11 @@ export default function Work() {
 
   useEffect (() => {
     axios.delete(`http://127.0.0.1:8000/accounts/api/experience/${deleteId}`)
-    .then(response =>  response)
+    .then(response =>  listExperience())
     .catch(error => {
         setErrorMessage(error.message);
         console.error( error);
     })
-    listExperience();
   }, [deleteId]) 
   
   
@@ -60,29 +59,28 @@ export default function Work() {
 
   return (
     <div style={{position:'relative'}}>
-      {loading && 
-        data.map((work) => (
-          <div className={`${styles.educationTag}`} key={work.id}>
+      
+          <div className={`${styles.educationTag}`}>
             <div className={`${styles.educationTitle}`}>
               <div className={`${styles.tagTitle}`}>
-                <p>{work.assignment}</p>
+                <p>{data.assignment}</p>
               </div>
               <div className={`${styles.tagDate}`}>
-                <p>From {work.init_year}</p> <p>to {work.end_year ? work.end_year : work.still_working}</p>
+                <p>From {data.init_year}</p> <p>to {data.end_year ? data.end_year : data.still_working}</p>
               </div>
             </div>
             <div>
               <div className={`${styles.subtitle}`}>
-                <p>{work.organisation}</p>
+                <p>{data.organisation}</p>
               </div>
               {state.showEditIcons && <div style={{display: 'flex', justifyContent: 'flex-end', width: '28%', 
               alignContent: 'center', position: 'relative', left: '72%', gap: '2rem', marginBottom:'-1rem', 
-              bottom:'2rem'}}><button style={{border:'none', background:'none'}} onClick={() => {setId(work.id), setUpdateShow(true)}}><img style={{backgroundColor:'white'}} src={Pen} /></button>
-                  <button style={{border:'none', background:'none'}} onClick={() => {setDeleteId(work.id)}}>
+              bottom:'2rem'}}><button style={{border:'none', background:'none'}} onClick={() => {setId(data.id), setUpdateShow(true)}}><img style={{backgroundColor:'white'}} src={Pen} /></button>
+                  <button style={{border:'none', background:'none'}} onClick={() => {setDeleteId(data.id)}}>
                   <img style={{backgroundColor:'white'}} src={Trash} />
                   </button></div> }
               <div className={`${styles.text}`}>
-                <p>{work.description}</p>
+                <p>{data.description}</p>
               </div>
             </div>
       <div className={`${styles.buttonSet}`}>
@@ -99,7 +97,7 @@ export default function Work() {
        </div>
            </div>
         
-      ))}
+      
     </div>
   )
 }

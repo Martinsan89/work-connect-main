@@ -7,7 +7,7 @@ import axios from 'axios'
 
 function UpdateWork(props) {
 
-  console.log(props.id)
+  // console.log(props.id)
 
   const putExp = () =>{
     axios.put(`http://127.0.0.1:8000/accounts/api/experience/${props.id}`,{ 

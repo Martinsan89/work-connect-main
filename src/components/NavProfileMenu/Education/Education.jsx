@@ -16,7 +16,7 @@ export default function Education() {
   const listEducation = async() => {
     try {
       const resp = await axios.get("http://127.0.0.1:8000/accounts/api/education/")
-      setData(resp.data.Education)
+      .then((resp) => {setData(resp.data.Education.reverse())})
       // console.log(resp.data)
       setLoading(true)
     }
@@ -31,7 +31,7 @@ export default function Education() {
 
   useEffect (() => {
     axios.delete(`http://127.0.0.1:8000/accounts/api/education/${deleteId}`)
-    .then(response => response)
+    .then(response => listEducation())
     .catch(error => {
         setErrorMessage(error.message);
         console.error( error);

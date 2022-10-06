@@ -36,7 +36,7 @@ export default function Languages() {
     try {
       const resp = axios.get("http://127.0.0.1:8000/accounts/api/language/")
       .then(resp => {
-        setData(resp.data.language)
+        setData(resp.data.language.reverse())
         // console.log(resp.data)
         setLoading(true)
       })
@@ -52,7 +52,7 @@ export default function Languages() {
 
   useEffect (() => {
     axios.delete(`http://127.0.0.1:8000/accounts/api/language/${deleteId}`)
-    .then(response => response)
+    .then(response => listLanguage())
     .catch(error => {
         // setErrorMessage(error.message);
         console.error( error);

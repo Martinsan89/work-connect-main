@@ -13,3 +13,19 @@
 
     margin: auto;
 }
+
+.btnLogin {
+    padding: 1rem;
+    background-color:#F14281;
+    width: 140px;
+    height:52px;
+    font-size:14px;
+    font-weight:400;
+	border-radius:3rem; 
+    line-height:20px; 
+    color: white;
+    margin-top:2rem;
+    border:none;
+    justify-content:none;
+    gap: 1rem;
+}

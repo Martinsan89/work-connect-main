@@ -7,6 +7,7 @@ import info from '../../assets/Buttons/info.svg'
 import trash from '../../assets/Buttons/trash.svg'
 import Eye from '../../assets/Profile/Eye.svg'
 import Eyeclose from '../../assets/Profile/EyeClose.svg'
+import axios from 'axios';
 
 export default function PersonalDataModal(props) {
   const [personalData, setPersonalData] = useState(true);
@@ -23,6 +24,68 @@ export default function PersonalDataModal(props) {
   const [repPasswType, setRepPasswType] = useState('password')
   const [currPasswType, setCurrPasswType] = useState('password')
   const [deletePasswType, setDeletePasswType] = useState('password')
+
+    //   Profile
+    const [social_link, setSocialLink] = useState('')
+    const [intro, setIntro] = useState('')
+    const [summary, setSummary] = useState('')
+    const [avatar, setAvatar] = useState('')
+    const [profession, setProfession] = useState('')
+    const [banner, setBanner] = useState('')
+    // console.log(social_link)
+    const putProfile = () => {
+        axios.put('http://127.0.0.1:8000/accounts/api/profile/1',{
+            social_link: social_link,
+            introduction: intro,
+            summary: summary,
+            avatar: avatar,
+            profession: profession,
+            banner: banner
+        })
+        .then(resp => console.log('actualizado'))
+        .catch(err => console.log(err))
+    }
+
+    // User
+    const [username, setUsername] = useState('')
+    const [company, setCompany] = useState('')
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [location, setLocation] = useState('')
+    const [phone, setPhone] = useState('')
+    const [web, setWeb] = useState('')
+    const [kvk, setKvk] = useState('')
+    const [type, setType] = useState('')
+    const [email, setEmail] = useState('')
+    const [province, setProvince] = useState('')
+
+    const putUser = () => {
+        axios.put('http://127.0.0.1:8000/accounts/api/user/1',{
+            password: "qwerty89",
+            is_superuser: false,
+            username: username,
+            company_name: company,
+            contact_person: null,
+            first_name: firstName,
+            last_name: lastName,
+            location: location,
+            phone_number: phone,
+            web_link : web,
+            kvk : kvk,
+            type: type,
+            email: email,
+            registration_code: null,
+            is_staff: false,
+            is_active: true,
+            longitude: null,
+            latitude: null,
+            province: province,
+            subscription_code: null,
+            subscription_end_date: null
+        })
+        .then(resp => console.log('actualizado'))
+        .catch(err => console.log(err))
+    }
 
     return (
       <Modal
@@ -84,29 +147,29 @@ export default function PersonalDataModal(props) {
 
         { personalData ? 
           <Modal.Body>
-            <Form>
+            <Form onSubmit={putProfile}>
                 <div className={`${styles.inputWork}`}>
                     <Form.Group style={{width: '100%'}} className="mb-3" controlId="formBasicName">
-                        <Form.Label style={{fontWeight: '500', paddingLeft: '5px'}}>Name</Form.Label>
-                        <Form.Control style={{width: '90%', borderRadius: '1rem'}} type="text" placeholder="Hans" />
+                        <Form.Label style={{fontWeight: '500', paddingLeft: '5px'}}>Social link</Form.Label>
+                        <Form.Control style={{width: '90%', borderRadius: '1rem'}} type="text" onChange={(e)=>setSocialLink(e.target.value)} />
                     </Form.Group>
                     <Form.Group style={{width: '100%'}} className="mb-3" controlId="formBasicLastNa,e">
-                        <Form.Label style={{fontWeight: '500', paddingLeft: '5px'}}>Last Name</Form.Label>
-                        <Form.Control style={{paddingLeft:'10px', width: '90%', borderRadius: '1rem'}} type="text" placeholder="Van Rijn" />
+                        <Form.Label style={{fontWeight: '500', paddingLeft: '5px'}}>Avatar</Form.Label>
+                        <Form.Control style={{paddingLeft:'10px', width: '90%', borderRadius: '1rem'}} type="text" onChange={(e)=>setAvatar(e.target.value)} />
                     </Form.Group>
                     <Form.Group style={{width: '100%'}} className="mb-3" controlId="formBasicCompany">
-                        <Form.Label style={{fontWeight: '500', paddingLeft: '5px'}}>Company</Form.Label>
-                        <Form.Control style={{width: '90%', borderRadius: '1rem'}} type="text" placeholder="Sample Tech, Inc." />
+                        <Form.Label style={{fontWeight: '500', paddingLeft: '5px'}}>Summary</Form.Label>
+                        <Form.Control style={{width: '90%', borderRadius: '1rem'}} type="text" onChange={(e)=>setSummary(e.target.value)} />
                     </Form.Group>
                 </div>
                 <Form.Group>
                     <Form.Label style={{fontWeight: '500',paddingTop: '1rem', paddingLeft: '5px', marginRight: '5px'}}>Proffession(s)</Form.Label>
                     <Form.Label style={{fontWeight: '300'}}>(separate with comma)</Form.Label> 
-                    <Form.Control as="textarea" style={{paddingLeft:'20px', width: '100%', height:'46px', borderRadius: '1rem'}} type="text" placeholder="JavaScript Developer, WordPress Developer, Digital Security Inspector" />
+                    <Form.Control as="textarea" style={{paddingLeft:'20px', width: '100%', height:'46px', borderRadius: '1rem'}} type="text" onChange={(e)=>setProfession(e.target.value)} />
                 </Form.Group>
                 <Form.Group>
                     <Form.Label style={ { fontWeight: '500', paddingTop: '2rem', paddingLeft: '5px', marginRight: '5px' }}>Introduction</Form.Label>
-                    <Form.Control as="textarea" style={ { paddingLeft:'20px', width: '100%', height:'86px', borderRadius: '1rem', marginBottom: '2.5rem' } } type="text" placeholder="JavaScript Developer, WordPress Developer, Digital Security Inspector" />
+                    <Form.Control as="textarea" style={ { paddingLeft:'20px', width: '100%', height:'86px', borderRadius: '1rem', marginBottom: '2.5rem' } } type="text" onChange={(e)=>setIntro(e.target.value)} />
                 </Form.Group>
                 
                 <div className='mb-3'>
@@ -123,47 +186,73 @@ export default function PersonalDataModal(props) {
           contactData ?
 
           <Modal.Body>
-                <Form>
+                <Form >
+                    <div className={`${styles.inputWork}`}>
+                        <Form.Group style={{width: '100%'}} className="mb-3" controlId="formBasicName">
+                            <Form.Label style={{fontWeight: '500', paddingLeft: '5px'}}>Username</Form.Label>
+                            <Form.Control style={{width: '90%', borderRadius: '1rem'}} type="text" onChange={(e)=>setUsername(e.target.value)} />
+                        </Form.Group>
+                        <Form.Group style={{width: '100%'}} className="mb-3" controlId="formBasicLastNa,e">
+                            <Form.Label style={{fontWeight: '500', paddingLeft: '5px'}}>First Name</Form.Label>
+                            <Form.Control style={{paddingLeft:'10px', width: '90%', borderRadius: '1rem'}} type="text" onChange={(e)=>setFirstName(e.target.value)} />
+                        </Form.Group>
+                        <Form.Group style={{width: '100%'}} className="mb-3" controlId="formBasicCompany">
+                            <Form.Label style={{fontWeight: '500', paddingLeft: '5px'}}>Last Name</Form.Label>
+                            <Form.Control style={{width: '90%', borderRadius: '1rem'}} type="text" onChange={(e)=>setLastName(e.target.value)} />
+                        </Form.Group>
+                    </div>
                     <div className={`${styles.inputWork}`}>
                         <Form.Group style={{width: '100%'}} className="mb-3" controlId="formBasicNumber">
                             <Form.Label style={{fontWeight: '500', paddingLeft: '5px'}}>Phone Number</Form.Label>
                             <Form.Control 
                                 style={{width: '90%', borderRadius: '1rem'}} 
                                 type="number" 
-                                placeholder= '+09 123 01 02 654'
+                                onChange={(e)=>setPhone(e.target.value)}
                             />
                         </Form.Group>
                         <Form.Group style={{width: '100%'}} className="mb-3" controlId="formBasicEmail">
                             <Form.Label style={{fontWeight: '500', paddingLeft: '5px'}}>Email Address</Form.Label>
-                            <Form.Control style={{paddingLeft:'20px', width: '90%', borderRadius: '1rem'}} type="email" placeholder="hansvanrijn@gmail.com" />
+                            <Form.Control style={{paddingLeft:'20px', width: '90%', borderRadius: '1rem'}} type="email" onChange={(e)=>setEmail(e.target.value)} />
+                        </Form.Group>
+                    </div>
+                    <div className={`${styles.inputWork}`}>
+                        <Form.Group style={{width: '100%'}} className="mb-3" controlId="formBasicNumber">
+                            <Form.Label style={{fontWeight: '500', paddingLeft: '5px'}}>Company</Form.Label>
+                            <Form.Control 
+                                style={{width: '90%', borderRadius: '1rem'}} 
+                                type="text" 
+                                onChange={(e)=>setCompany(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Form.Group style={{width: '100%'}} className="mb-3" controlId="formBasicEmail">
+                            <Form.Label style={{fontWeight: '500', paddingLeft: '5px'}}>Type</Form.Label>
+                            <Form.Control style={{paddingLeft:'20px', width: '90%', borderRadius: '1rem'}} type="text" onChange={(e)=>setType(e.target.value)} />
                         </Form.Group>
                     </div>
                     <div className={`${styles.inputWork}`}>
                         <Form.Group style={{width: '100%'}} className="mb-3" controlId="formBasicSite">
                             <Form.Label style={{fontWeight: '500', paddingLeft: '5px'}}>Website</Form.Label>
                             <Form.Label style={{fontWeight: '300', marginLeft: '5px'}}>(Optional)</Form.Label>
-                            <Form.Control style={{width: '90%', borderRadius: '1rem'}} type="text" placeholder= 'hansvrijn.com' /> 
+                            <Form.Control style={{width: '90%', borderRadius: '1rem'}} type="text" onChange={(e)=>setWeb(e.target.value)} /> 
                         </Form.Group>
                         <Form.Group style={{width: '100%'}} className="mb-3" controlId="formBasicLinkedIn">
-                            <Form.Label style={{fontWeight: '500', paddingLeft: '5px'}}>LinkedIn URL</Form.Label>
-                            <Form.Control style={{paddingLeft:'20px', width: '90%', borderRadius: '1rem'}} type="text" placeholder="linkedin.com/in/hansv.rijn" />
+                            <Form.Label style={{fontWeight: '500', paddingLeft: '5px'}}>KVK</Form.Label>
+                            <Form.Control style={{paddingLeft:'20px', width: '90%', borderRadius: '1rem'}} type="text" onChange={(e)=>setKvk(e.target.value)} />
                         </Form.Group>
                     </div>
                     <div className={`${styles.inputWork}`}>
                         <Form.Group style={{width: '100%'}} className="mb-3" controlId="formBasicAddress">
-                            <Form.Label style={{fontWeight: '500', paddingLeft: '5px'}}>Address</Form.Label>
-                            <Form.Control style={{width: '90%', borderRadius: '1rem'}} type="text" placeholder= 'Lorem ipsum 76, Other, City' /> 
+                            <Form.Label style={{fontWeight: '500', paddingLeft: '5px'}}>Location</Form.Label>
+                            <Form.Control style={{width: '90%', borderRadius: '1rem'}} type="text" onChange={(e)=>setLocation(e.target.value)} /> 
                         </Form.Group>
                         <Form.Group style={{width: '100%'}} className="mb-3" controlId="formBasicRegion">
                             <Form.Label style={{fontWeight: '500', paddingLeft: '5px'}}>Province/Region</Form.Label>
-                            <Form.Select style={{paddingLeft:'20px', width: '90%', borderRadius: '1rem'}}  aria-label="Default select example">
-                            <option>Friesland</option>
-                        </Form.Select>
+                            <Form.Control style={{width: '90%', borderRadius: '1rem'}} type="text" onChange={(e)=>setProvince(e.target.value)} />
                         </Form.Group>
                     </div>
                     
                     <div className='mb-3' style={ { marginTop: '5rem', paddingTop: '2rem' } } >
-                        <Button style={{padding:'1rem', backgroundColor:'#F14281', width:'160px', height:'52px', fontSize:'14px', fontWeight:'400', borderRadius:'3rem', lineHeight:'20px' }} type="submit">
+                        <Button onClick={(e)=>{e.preventDefault, putUser()}} style={{padding:'1rem', backgroundColor:'#F14281', width:'160px', height:'52px', fontSize:'14px', fontWeight:'400', borderRadius:'3rem', lineHeight:'20px' }} type="submit">
                             SAVE
                         </Button>
                         <Button style={{padding:'1rem', backgroundColor:'white', width:'160px', height:'52px', fontSize:'14px', fontWeight:'400', borderRadius:'3rem', border: '2px solid #F14281', lineHeight:'20px', color:'#F14281', marginLeft:'10px'}} onClick={ () => {props.onHide(); setPersonalData(true); setContactData(false); setSettingsModal(false)}  }>CANCEL</Button>

@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 function UpdateEducation(props) {
 
-    console.log(props.id)
+    // console.log(props.id.id)
   const [grade, setGrade] = useState('');
   const [institution, setInstitution] = useState('');
   const [init_year, setInitYear] = useState('');
@@ -17,17 +17,16 @@ function UpdateEducation(props) {
   const [user_id, setUserId] = useState(0)
 
   const putEducation = () =>{
-    axios.put(`http://127.0.0.1:8000/accounts/api/education/${id}`,{ 
+    axios.put(`http://127.0.0.1:8000/accounts/api/education/${props.id.id}`,{ 
         grade: grade,   
-        init_year : init_year,
-        user_id : user_id, 
+        init_year : init_year, 
         institution : institution, 
         study : study, 
         still_studying : stillStudying})
         .then((resp) => console.log('actualizado'))
         .catch((error) => console.log(error))
   }  
-  useEffect(()=>{setId(props.id), setUserId(props.user_id)},[props])
+  // useEffect(()=>{setId(props.id), setUserId(props.user_id)},[props])
 
   return (
     <div>
@@ -44,7 +43,7 @@ function UpdateEducation(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <Form>
+        <Form onSubmit={()=>{putEducation()}}>
             <div className={`${styles.inputWork}`}>
                 <Form.Group style={{width: '100%'}} className="mb-3" controlId="formBasicEmail">
                     <Form.Label style={{fontWeight: '500', paddingLeft: '5px'}}>Carrer</Form.Label>
@@ -89,7 +88,7 @@ function UpdateEducation(props) {
             </div>
             <div>
                 <Button  style={{padding:'1rem', backgroundColor:'#F14281', width:'160px', height:'52px', fontSize:'14px', fontWeight:'400', borderRadius:'3rem', lineHeight:'20px', border:'none', margin:'2rem 0' }} 
-                onClick={putEducation}>UPDATE</Button>
+                type='submit'>UPDATE</Button>
                 <Button style={{padding:'1rem', backgroundColor:'white', width:'160px', height:'52px', fontSize:'14px', fontWeight:'400', borderRadius:'3rem', border: '2px solid #F14281', lineHeight:'20px', color:'#F14281', marginLeft:'10px'}} onClick={props.onHide}>CANCEL</Button>
             </div>
         </Form>

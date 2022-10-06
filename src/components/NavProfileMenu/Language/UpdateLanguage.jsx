@@ -23,20 +23,21 @@ import axios from 'axios'
 
 function UpdateLanguage(props) {
 
+    // console.log(props.id)
   const [language, setLanguage] = useState('')
   const [level, setLevel] = useState('')
   const [id, setId] = useState(0)
 
   const putLanguage = () =>{
-    axios.put(`http://127.0.0.1:8000/accounts/api/language/${id}`,{ 
+    axios.put(`http://127.0.0.1:8000/accounts/api/language/${props.id}`,{ 
         language: language,
         lvl : level})
         .then((resp) => console.log('actualizado'))
         .catch((error) => console.log(error))
   } 
-  useEffect(()=>{
-    setId(props.id);
-  },[props])
+  // useEffect(()=>{
+  //   setId(props.id);
+  // },[props])
 
   return (
     <div>
@@ -52,7 +53,7 @@ function UpdateLanguage(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <Form>
+        <Form onSubmit={()=>{putLanguage()}}>
           <div style={{display:'flex'}}>
             <div style={{display:'flex', flexDirection:'column', width:'90%'}}>
               <div style={{borderRight: '1.5px solid #B3B1B4', width:'95%'}}>
@@ -85,7 +86,7 @@ function UpdateLanguage(props) {
               </div>
               <div style={{margin:'2rem 0'}}>
                 <Button  style={{padding:'1rem', backgroundColor:'#F14281', width:'160px', height:'52px', fontSize:'14px', fontWeight:'400', borderRadius:'3rem', lineHeight:'20px', border:'none', margin:'2rem 0' }} 
-                onClick={putLanguage}>UPDATE</Button>
+                type="submit">UPDATE</Button>
                 <Button style={{padding:'1rem', backgroundColor:'white', width:'160px', height:'52px', fontSize:'14px', fontWeight:'400', borderRadius:'3rem', border: '2px solid #F14281', lineHeight:'20px', color:'#F14281', marginLeft:'10px'}} onClick={props.onHide}>CANCEL</Button>
               </div>
             </div>

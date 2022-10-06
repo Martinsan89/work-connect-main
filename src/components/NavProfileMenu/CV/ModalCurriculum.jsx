@@ -8,7 +8,7 @@ function ModalCurriculum(props) {
 
   const [files, setFiles] = useState({});
   const [dataUser, setDataUser] = useState([])
-  console.log(props)
+  // console.log(props)
 
   const postCV = () =>{
     axios.post('http://127.0.0.1:8000/accounts/api/profile/',{
@@ -118,7 +118,7 @@ function ModalCurriculum(props) {
           <Button style={{padding:'1rem', backgroundColor:'#F14281', width:'160px', height:'52px', fontSize:'14px', fontWeight:'400', borderRadius:'3rem', lineHeight:'20px', border:'none', margin:'2rem 0'}} type="submit"
           onClick={postCV}>ADD</Button>
           <Button style={{padding:'1rem', backgroundColor:'white', width:'160px', height:'52px', fontSize:'14px', fontWeight:'400', borderRadius:'3rem', border: '2px solid #F14281', lineHeight:'20px', color:'#F14281', marginLeft:'10px'}} onClick={props.onHide}>CANCEL</Button>
-          </div>
+        </div>
       </Modal.Body>
     </Modal>
       

@@ -8,7 +8,7 @@ import { Form } from 'react-bootstrap'
 import styles from './CreateNewAccount.module.css'
 import { useState } from 'react'
 
-const AccountDataForm = () => {
+const AccountDataForm = ({setUsername, setEmail, setPass}) => {
     
     const [showPassword, setShowPassword] = useState(false)
     const [showRepeatPassword, setShowRepeatPassword] = useState(false)
@@ -26,6 +26,7 @@ const AccountDataForm = () => {
                 <Form.Control 
                     style={{width: '90%', borderRadius: '1rem', color: '#B3B1B4', fontWeight: '300'}} 
                     type="text" 
+                    onChange={(e)=>setUsername(e.target.value)}
                     placeholder= 'Your username'
                 />
             </Form.Group>
@@ -34,7 +35,8 @@ const AccountDataForm = () => {
                     <img className='me-3' src={ Mail } alt="User Icon" />
                     Email Address
                 </Form.Label>
-                <Form.Control style={{paddingLeft:'20px', width: '90%', borderRadius: '1rem', color: '#B3B1B4', fontWeight: '300'}} type="email" placeholder="Your email here" />
+                <Form.Control style={{paddingLeft:'20px', width: '90%', borderRadius: '1rem', color: '#B3B1B4', fontWeight: '300'}} 
+                type="email" placeholder="Your email here" onChange={(e)=>setEmail(e.target.value)} />
             </Form.Group>
         </div>
         <div className={`${styles.inputWork} d-flex`}>
@@ -43,7 +45,8 @@ const AccountDataForm = () => {
                     <img className='me-3' src={ Lock } alt="User Icon" />
                     Password
                 </Form.Label>
-                <Form.Control style={{width: '90%', borderRadius: '1rem', color: '#B3B1B4', fontWeight: '300'}} type= { passwIconType } placeholder= 'Enter your password' /> 
+                <Form.Control style={{width: '90%', borderRadius: '1rem', color: '#B3B1B4', fontWeight: '300'}} 
+                type= { passwIconType } placeholder= 'Enter your password' onChange={(e)=>setPass(e.target.value)} /> 
                 <span
                     onClick={ () => { showPassword ? setShowPassword(false) : setShowPassword(true); showPassword ? setPasswIconType('password') : setPasswIconType('text') } }
                 >

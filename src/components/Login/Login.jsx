@@ -1,4 +1,4 @@
-import React,{useState}  from 'react'
+import React,{useState, useEffect}  from 'react'
 import styles from '../Login/Login.module.css'
 import Lock from '../../assets/Login/Lock.svg'
 import Mail from '../../assets/Login/Mail.svg'
@@ -9,6 +9,7 @@ import Eye from '../../assets/Login/Eye.svg'
 import EyeClose from '../../assets/Login/EyeClose.svg'
 import {Form} from 'react-bootstrap'
 import {Navigate} from 'react-router-dom'
+import axios from 'axios'
 
 
 function Login() {
@@ -16,7 +17,7 @@ function Login() {
 	const [passwordInput, setPasswordInput] = useState("");
 	const [goToHome, setGoToHome] = useState(false);
 	const [goToRegister, setGoToRegister] = useState(false);
-
+	const [mail, setMail] = useState('');
 	const [goToRestorePassw, setGoToRestorePassw] = useState(false);
 
 	if(goToHome){
@@ -40,6 +41,27 @@ function Login() {
 		}
 		setPasswordType("password")
 	}
+
+	const [user, setUser] = useState([])
+    const getUsers = async () => {
+        try{
+           const response = await axios.get('http://127.0.0.1:8000/accounts/api/user/')
+                .then(resp => setUser(resp.data.Users))
+                .catch(err => console.log(err))
+        } catch(err){
+            console.log(err)
+        }
+    }
+	useEffect(()=>{
+		getUsers();
+	},[])
+ 
+	const findUser = () =>{
+		let user = users.find((i) => i.email == mail)
+		console.log(user)
+	}
+
+
 	return (
 		<div>
 			<div className={`${styles.login}`}>
@@ -58,7 +80,7 @@ function Login() {
 								<div className="row g-0">
 									<div className="col-md-7 col-lg-7 d-flex align-items-center">
 										<div className="card-body">
-											<Form className='pt-4'>
+											<Form className='pt-4' >
 												<h2 style={{color: "#107ACC", fontWeight:"600", fontSize:'37px'}}>Login</h2>
 												<p style={{fontWeight: '300', fontSize: '1.5rem'}}>Welcome back!</p>
 												<Form.Group className="form-outline mt-4" controlId='formEmail'>                                            
@@ -68,7 +90,8 @@ function Login() {
 															Email
 														</span>
 													</Form.Label> 
-													<Form.Control type="email" className="form-control bg-light" 			 placeholder="Your email address" name="username" style={{borderRadius:'2rem', color:'#B3B1B4', opacity:'.5'}}/>
+													<Form.Control type="email" className="form-control bg-light" placeholder="Your email address" 
+													name="username" onChange={(e)=>{setMail(e.target.value)}} style={{borderRadius:'2rem', color:'#B3B1B4', opacity:'.5'}}/>
 												</Form.Group>
 												<Form.Group className="form-outline mt-4" controlId='formPassword' 
 													style={{position:'relative'}}>
@@ -84,7 +107,7 @@ function Login() {
 													</button>
 												</Form.Group>
 												<div className="d-flex align-items-baseline" style={{gap:'1rem', width:'110%', marginTop:'10px'}}>
-												<button type='button' style={{padding:'1rem', backgroundColor:'#F14281', width:'140px', height:'52px', fontSize:'14px', fontWeight:'400', borderRadius:'3rem', lineHeight:'20px', color:'white', marginTop:'2rem', border:'none', justifyContent:'none', gap:'1rem'}} onClick={() => setGoToHome(true)} >LOGIN</button>
+												<button type='submit' className={`${styles.btnLogin}`} onClick={(e) =>{e.preventDefault(), findUser()}}>LOGIN</button>
 													<span>Forgot your password? 
 														<a
 															onClick={ () => { setGoToRestorePassw(true) } }
