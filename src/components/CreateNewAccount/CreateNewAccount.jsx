@@ -75,10 +75,8 @@ const CreateNewAccount = ({ companyButton, freelaButton, personButon }) => {
         .catch(err => console.log(err))
     }
 
-
-<<<<<<< HEAD
     return (
-        <>
+        
             <div className= { styles.mainDiv }>
 
                 <div style={{display:'flex', alignItems:'center', justifyContent:'flex-end', position:'relative'}}>
@@ -88,7 +86,7 @@ const CreateNewAccount = ({ companyButton, freelaButton, personButon }) => {
                     <div style={{position:'absolute', top: '2.8rem', right:'3.76rem'}}>
                         <img src={ Vector } alt="vector" />
                     </div>
-=======
+
             <div className={ styles.registerCard } style={ freelaButton && aboutYou ? { height: '560px' } : { height: '460px' }  }>
                 <h2 className= { styles.registerTitle }>Create New Account</h2>
                 {/* ⬇️ Acá va la barra de navegación. Probar Router ⬇️ */}
@@ -142,7 +140,6 @@ const CreateNewAccount = ({ companyButton, freelaButton, personButon }) => {
                                 accountData ? 'NEXT' : aboutYou ? 'NEXT' : 'DONE'
                             }
                     </Button>
->>>>>>> refs/remotes/origin/master
                 </div>
 
                 <div className={ styles.registerCard } style={ freelaButton && aboutYou ? { height: '560px' } : { height: '460px' }  }>
@@ -244,7 +241,8 @@ const CreateNewAccount = ({ companyButton, freelaButton, personButon }) => {
             <div className={ styles.copyrightDiv }>
                 <p className={ styles.copyrightText }>Copyright ©  WorkConnect 2022. All Rights Reserved.</p>
             </div> */}
-        </>
+        </div>
+        </div>
     )
 }
 
